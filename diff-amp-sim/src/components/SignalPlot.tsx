@@ -1,14 +1,17 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
 
+
 interface SignalPlotProps {
   x: number[];
   y: number[];
   title: string;
   color?: string;
+  interactive?: boolean;
 }
 
-const SignalPlot: React.FC<SignalPlotProps> = ({ x, y, title, color }) => (
+
+const SignalPlot: React.FC<SignalPlotProps> = ({ x, y, title, color, interactive }) => (
   <Plot
     data={[
       {
@@ -25,7 +28,7 @@ const SignalPlot: React.FC<SignalPlotProps> = ({ x, y, title, color }) => (
       title,
       margin: { t: 40, l: 40, r: 20, b: 40 },
     }}
-    config={{ displayModeBar: false }}
+    config={{ displayModeBar: interactive, scrollZoom: interactive }}
   />
 );
 
