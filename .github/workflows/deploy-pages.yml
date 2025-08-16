@@ -135,14 +135,14 @@ jobs:
             <p class="subtitle">Explore my projects and experiments</p>
             
             <div class="projects">
-              <a href="/c-portfolio/diff-amp-sim/" class="project">
+              <a href="/chandrima2108/diff-amp-sim/" class="project">
                 <h3>🔧 Differential Amplifier Simulator</h3>
                 <p>Interactive circuit simulation tool built with React and TypeScript</p>
               </a>
               
               <!-- Add more projects here as you build them -->
               <!-- 
-              <a href="/c-portfolio/project-name/" class="project">
+              <a href="/chandrima2108/project-name/" class="project">
                 <h3>🚀 Another Project</h3>
                 <p>Description of your next amazing project</p>
               </a>
