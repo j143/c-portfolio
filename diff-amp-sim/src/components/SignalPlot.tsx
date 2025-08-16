@@ -25,7 +25,9 @@ const SignalPlot: React.FC<SignalPlotProps> = ({ x, y, title, color, interactive
     layout={{
       width: 500,
       height: 250,
-      title,
+      title: {
+        text: title,
+      },
       margin: { t: 40, l: 40, r: 20, b: 40 },
     }}
     config={{ displayModeBar: interactive, scrollZoom: interactive }}

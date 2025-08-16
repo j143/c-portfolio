@@ -2,6 +2,7 @@
   "name": "diff-amp-sim",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/chandrima2108/diff-amp-sim",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.7.0",
@@ -42,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-plotly.js": "^2.6.3"
   }
 }
