@@ -4,21 +4,7 @@ import './App.css';
 import './theme.css';
 import SignalPlot from './components/SignalPlot';
 import SignalControls, { SignalType } from './components/SignalControls';
-import DiffAmpCircuit from './components/DiffAmpCircuit';
 
-// Helper to generate signals
-function generateSignal(type: SignalType, amplitude: number, frequency: number, t: number[]): number[] {
-  switch (type) {
-    case 'sine':
-      return t.map(x => amplitude * Math.sin(2 * Math.PI * frequency * x));
-    case 'square':
-      return t.map(x => amplitude * Math.sign(Math.sin(2 * Math.PI * frequency * x)));
-    case 'noisy':
-      return t.map(x => amplitude * Math.sin(2 * Math.PI * frequency * x) + (Math.random() - 0.5) * amplitude * 0.7);
-    default:
-      return t.map(() => 0);
-  }
-}
 
 function App() {
   // Signal controls
