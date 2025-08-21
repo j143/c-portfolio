@@ -28,7 +28,7 @@ Here's a showcase of the interactive tools and applications I've built, demonstr
   
   <p>
     <a href="/chandrima2108/diff-amp-sim/" class="btn btn--primary">🚀 Try Live Demo</a>
-    <a href="https://github.com/j143/chandrima2108/tree/main/diff-amp-sim" class="btn btn--info">📁 View Source</a>
+    <a href="https://github.com/chandrima2108/chandrima2108/tree/main/diff-amp-sim" class="btn btn--info">📁 View Source</a>
   </p>
 </div>
 

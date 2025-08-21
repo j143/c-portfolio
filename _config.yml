@@ -2,9 +2,9 @@
 title: "Chandrima's Portfolio"
 name: "Chandrima"
 description: "VLSI Analog Design Engineer | B.Tech & M.Tech Graduate"
-url: "https://j143.github.io"
+url: "https://chandrima2108.github.io"
 baseurl: "/chandrima2108"
-repository: "j143/chandrima2108"
+repository: "chandrima2108/chandrima2108"
 
 # Theme
 remote_theme: "mmistakes/minimal-mistakes"
@@ -18,10 +18,10 @@ author:
   links:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/j143"
+      url: "https://github.com/chandrima2108"
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
-      url: "#" # Add LinkedIn URL when available
+      url: "https://www.linkedin.com/in/chandrima-kachhwah/" # Add LinkedIn URL when available
 
 # Reading Files
 include:
