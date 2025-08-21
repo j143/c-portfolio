@@ -1,4 +1,4 @@
-name: Deploy Portfolio to GitHub Pages
+name: Deploy Jekyll Site to GitHub Pages
 
 on:
   push:
@@ -27,7 +27,14 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    - name: Setup Node.js
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.1'
+        bundler-cache: true
+        cache-version: 0
+
+    - name: Setup Node.js (for React projects)
       uses: actions/setup-node@v4
       with:
         node-version: '18'
@@ -37,132 +44,29 @@ jobs:
     - name: Setup Pages
       uses: actions/configure-pages@v4
 
-    - name: Create main portfolio structure
+    - name: Build Jekyll site
       run: |
-        mkdir -p dist
-        
-    - name: Build diff-amp-sim project
+        bundle exec jekyll build --destination ./_site
+      env:
+        JEKYLL_ENV: production
+
+    - name: Build and integrate React projects
       run: |
+        # Build diff-amp-sim React project
         cd diff-amp-sim
         npm ci
         npm run build
-        # Copy build to dist with project subfolder
-        cp -r build/* ../dist/
-        # Also create a subfolder for direct access
-        mkdir -p ../dist/diff-amp-sim
-        cp -r build/* ../dist/diff-amp-sim/
-
-    # Add more projects here as needed
-    # - name: Build another-project
-    #   run: |
-    #     cd another-project
-    #     npm ci
-    #     npm run build
-    #     mkdir -p ../dist/another-project
-    #     cp -r build/* ../dist/another-project/
-
-    - name: Create portfolio index page
-      run: |
-        cat > dist/index.html << 'EOF'
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Chandrima's Portfolio</title>
-          <style>
-            body {
-              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-              line-height: 1.6;
-              margin: 0;
-              padding: 0;
-              background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-              min-height: 100vh;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-            }
-            .container {
-              background: white;
-              border-radius: 20px;
-              padding: 3rem;
-              box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-              max-width: 600px;
-              text-align: center;
-            }
-            h1 {
-              color: #333;
-              margin-bottom: 1rem;
-              font-size: 2.5rem;
-            }
-            .subtitle {
-              color: #666;
-              margin-bottom: 2rem;
-              font-size: 1.2rem;
-            }
-            .projects {
-              display: grid;
-              gap: 1rem;
-              margin-top: 2rem;
-            }
-            .project {
-              background: #f8f9fa;
-              border: 2px solid #e9ecef;
-              border-radius: 10px;
-              padding: 1.5rem;
-              text-decoration: none;
-              color: #333;
-              transition: all 0.3s ease;
-            }
-            .project:hover {
-              transform: translateY(-2px);
-              box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-              border-color: #667eea;
-            }
-            .project h3 {
-              margin: 0 0 0.5rem 0;
-              color: #667eea;
-            }
-            .project p {
-              margin: 0;
-              color: #666;
-            }
-          </style>
-        </head>
-        <body>
-          <div class="container">
-            <h1>👋 Welcome to My Portfolio</h1>
-            <p class="subtitle">Explore my projects and experiments</p>
-            
-            <div class="projects">
-              <a href="/chandrima2108/diff-amp-sim/" class="project">
-                <h3>🔧 Differential Amplifier Simulator</h3>
-                <p>Interactive circuit simulation tool built with React and TypeScript</p>
-              </a>
-              
-              <!-- Add more projects here as you build them -->
-              <!-- 
-              <a href="/chandrima2108/project-name/" class="project">
-                <h3>🚀 Another Project</h3>
-                <p>Description of your next amazing project</p>
-              </a>
-              -->
-            </div>
-            
-            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #eee;">
-              <p style="color: #666; margin: 0;">
-                Built with ❤️ using React, TypeScript, and GitHub Pages
-              </p>
-            </div>
-          </div>
-        </body>
-        </html>
-        EOF
+        
+        # Copy React build to Jekyll site
+        mkdir -p ../_site/diff-amp-sim
+        cp -r build/* ../_site/diff-amp-sim/
+        
+        cd ..
 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
-        path: './dist'
+        path: './_site'
 
     - name: Deploy to GitHub Pages
       id: deployment
